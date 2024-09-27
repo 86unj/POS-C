@@ -1,12 +1,23 @@
-# POS-C
 # Project: Simple Point Of Sale System
 
-Your task for the project for this semester is to create a simple Point of Sale (POS) application that keeps track of a small inventory of Goods to sell and can sell them at the cashier, issuing a bill of sale. 
+A simple Point of Sale (POS) application that keeps track of a small inventory of Goods to sell and can sell them at the cashier, issuing a bill of sale. 
 
 
-# The Point Of Sale system
+### Milestones
 
-We will start the development of the project by creating its user interface (PosUI module). Through this, we will create a mockup application that represents what the application will look like and act without actually doing anything. In short, we are creating a prototype of the application (in MS1) then coding its engine (in MS2, MS31 to MS35) and meanwhile adding functionality to the POS system (MS1) to make it fully functional (by the end of MS35). MS4 and MS5 add Inventory functionality to the POS system and is optional
+|Milestone| | Overview | Comments |
+|------|:---:|:---------|:------|
+| [MS1](#milestone-1) | | POS UI | Create a mock-up application |
+| [MS2](#milestone-2-inventory-listing) | | Inventory listing | Adding functionality to the POS system |
+| [MS3](#milestone-3) | | Point of Sale |
+| | [MS31](#ms31--void-saveitemsconst-char-filename) | Save Item |
+| | [MS32](#ms32-double-billdisplayconst-struct-item-item) | Display Bill |
+| | [MS33](#ms33-void-displayconst-struct-item-item) | Print Item |
+| | [MS34](#ms34-int-searchvoid) | Search Item  |  
+| | [MS35](#ms35-void-posvoid) | POS |
+| [MS4](#milestone-4-stock-item) |    | Stock Item |
+| [MS5](#milestone-5-add-and-remove) |   | Add and Remove Items | 
+ 
 
 # Milestone 1
 
@@ -221,17 +232,10 @@ Create a function in PosApp.c module called saveItems, this function receives a 
     - in a loop that goes up to `noOfItems`, write all the variables of the `items` elements in a comma-separated format. Make sure each record is separated from the next one with a new-line character(`\n`). 
     - close the file
 - If the opening was not successful print `Could not open >>?????<<\n` replace `?????` with the file name 
-- for a refresher on writing to opening a file for writing, visit: https://intro2c.sdds.ca/E-Secondary-Storage/text-files#writing
 
 
 
 
-
-
-### MS31 Submission command
-```
-~profname.proflastname/submit 144/prj/m31 
-```
 ## MS32 `double billDisplay(const struct Item* item)`
 
 This function will be used in POS to print a bill. 
@@ -270,24 +274,6 @@ This function is used to print an Item in a "Form" (i.e non-linear, detailed) fo
 
 
 
-### sample ouptut
-
-```text
-=============v
-Name:        Joe's Organic Potato Chips
-Sku:         6539
-Price:       3.29
-Price + tax: 3.72
-Stock Qty:   15
-=============^
-=============v
-Name:        Milk
-Sku:         1234
-Price:       3.99
-Price + tax: N/A
-Stock Qty:   1
-=============^
-```
 
 
 
@@ -393,85 +379,6 @@ Implement the option 4 of the POS system to add to the quantity of the Items to 
 > Note: This output is only a sample for debugging purposes; the tester 
       output may have different values
       
-The execution should be as follows assuming there are 9 items in the inventory:
-```text
->>>> Loading Items...
->>>> Done!...
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 4
->>>> Stock Items...
-Select an item:
------v--------v--------------------v-------v---v-----v---------v
- Row | SKU    | Item Name          | Price |TX | Qty |   Total |
------|--------|--------------------|-------|---|-----|---------|
-   1 |   9852 | Seedless Grapes    | 10.56 |   |  20 |  211.20 |
-   2 |   9318 | Tide Detergent     | 16.99 | T |  10 |  191.99 |
-   3 |   5496 | Veal Parmigiana    |  5.49 | T |   3 |   18.61 |
-   4 |   3854 | Beefsteak Pie      |  5.29 | T |  40 |  239.11 |
-   5 |   5228 | 7up 12 pack        |  6.49 | T |  20 |  146.67 |
-   6 |   3456 | Bic Pen(Blue)      |  1.49 | T | 580 |  976.55 |
-   7 |   7913 | Banana             |  0.44 |   | 100 |   44.00 |
-   8 |   3695 | Honeydew Melon     |  5.99 |   |  20 |  119.80 |
-   9 |   1679 | Jack's Apple Juice |  1.50 |   |  80 |  120.00 |
------^--------^--------------------^-------^---^-----^---------^
-Select row: abc
-Invalid Integer, try again: 0
-[1<=Row Number<=9], retry: 10
-[1<=Row Number<=9], retry: 6
-=============v
-Name:        Bic Pen(Blue)
-Sku:         3456
-Price:       1.49
-Price + tax: 1.68
-Stock Qty:   580
-=============^
-Quantity to add: abc
-Invalid Integer, try again: 0
-[1<=Quantity to Add<=419], retry: 500
-[1<=Quantity to Add<=419], retry: 200
->>>> Done!...
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 1
->>>> List Items...
- Row | SKU    | Item Name          | Price |TX | Qty |   Total |
------|--------|--------------------|-------|---|-----|---------|
-   1 |   9852 | Seedless Grapes    | 10.56 |   |  20 |  211.20 |
-   2 |   9318 | Tide Detergent     | 16.99 | T |  10 |  191.99 |
-   3 |   5496 | Veal Parmigiana    |  5.49 | T |   3 |   18.61 |
-   4 |   3854 | Beefsteak Pie      |  5.29 | T |  40 |  239.11 |
-   5 |   5228 | 7up 12 pack        |  6.49 | T |  20 |  146.67 |
-   6 |   3456 | Bic Pen(Blue)      |  1.49 | T | 780 | 1313.29 |
-   7 |   7913 | Banana             |  0.44 |   | 100 |   44.00 |
-   8 |   3695 | Honeydew Melon     |  5.99 |   |  20 |  119.80 |
-   9 |   1679 | Jack's Apple Juice |  1.50 |   |  80 |  120.00 |
------^--------^--------------------^-------^---^-----^---------^
-                               Total Asset: $  |      2,404.67 |
------------------------------------------------^---------------^
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 0
->>>> Saving Items...
->>>> Done!...
-Goodbye!
-
-```
 
 ### Suggestions implementation
 This is an open bonus section. You can implement it any way you like but if asked, you should be able exactly how your code works.
@@ -497,147 +404,5 @@ Perform a foolproof data entry and receive the information of a new Item and add
 ## Remove
 Show the user the list of all the items and let the user select one, then remove it from the `items` array.
 
-### Execution Sample  
-
-> Note: This output is only a sample for debugging purposes; the tester 
-      output may have different values
       
-```text
->>>> Loading Items...
->>>> Done!...
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 2
->>>> Adding Item...
-SKU: 1111
-Name: Red Apples
-Price: abc
-Invalid Double, try again: 3.99
-Is the item Taxed? (Y)es/(N)o: n
-Quantity: abc
-Invalid Integer, try again: 5000
-[1<=Quantity<999], retry: 50
->>>> Done!...
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 2
->>>> Adding Item...
-SKU: 2222
-Name: Paper
-Price: 14.99
-Is the item Taxed? (Y)es/(N)o: y
-Quantity: 60
->>>> Done!...
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 2
->>>> Adding Item...
-This system cannot store more that 28 different Items in the inventory!
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 3
->>>> Remove Item...
-Select an item:
------v--------v--------------------v-------v---v-----v---------v
- Row | SKU    | Item Name          | Price |TX | Qty |   Total |
------|--------|--------------------|-------|---|-----|---------|
-   1 |   9852 | Seedless Grapes    | 10.56 |   |  20 |  211.20 |
-   2 |   9318 | Tide Detergent     | 16.99 | T |  10 |  191.99 |
-   3 |   5496 | Veal Parmigiana    |  5.49 | T |   3 |   18.61 |
-   4 |   3854 | Beefsteak Pie      |  5.29 | T |  40 |  239.11 |
-   5 |   5228 | 7up 12 pack        |  6.49 | T |  20 |  146.67 |
-   6 |   3456 | Bic Pen(Blue)      |  1.49 | T | 380 |  639.81 |
-   7 |   7913 | Banana             |  0.44 |   | 100 |   44.00 |
-   8 |   3695 | Honeydew Melon     |  5.99 |   |  20 |  119.80 |
-   9 |   1679 | Jack's Apple Juice |  1.50 |   |  80 |  120.00 |
-  10 |   6539 | Joe Org Chips      |  3.29 | T |  15 |   55.77 |
-  11 |   9462 | Kiwifruit          |  0.50 |   | 123 |   61.50 |
-  12 |   4297 | Lays Chips S&V     |  3.69 | T |   1 |    4.17 |
-  13 |   1234 | Milk               |  3.99 |   |   1 |    3.99 |
-  14 |   3461 | Nestea 12 Pack     |  7.29 | T |  50 |  411.88 |
-  15 |   3456 | Paper Cups         |  5.99 | T |  38 |  257.21 |
-  16 |   1313 | Paper Tissue       |  1.22 | T | 204 |  281.23 |
-  17 |   1627 | Peaches            |  1.44 |   |  14 |   20.16 |
-  18 |   3214 | Pomegranate        |  2.50 |   |   5 |   12.50 |
-  19 |   1596 | Royal Gala Apples  |  4.42 |   |  10 |   44.20 |
-  20 |   1212 | Salted Butter      |  5.99 |   | 108 |  646.92 |
-  21 |   6458 | Blueberries        |  3.99 |   |  30 |  119.70 |
-  22 |   4567 | Butter             |  4.56 | T |   9 |   46.38 |
-  23 |   3815 | Chicken Alfredo    |  4.49 | T |  20 |  101.47 |
-  24 |   3512 | Coke 12 Pack       |  6.69 | T |  30 |  226.79 |
-  25 |   2564 | Curry Checken      |  4.79 | T |  30 |  162.38 |
-  26 |   5656 | Honey              | 12.99 | T |  10 |  146.79 |
-  27 |   1111 | Red Apples         |  3.99 |   |  50 |  199.50 |
-  28 |   2222 | Paper              | 14.99 | T |  60 | 1016.32 |
------^--------^--------------------^-------^---^-----^---------^
-Select row: abc
-Invalid Integer, try again: 0
-[1<=Row Number<28], retry: 29
-[1<=Row Number<28], retry: 6
->>>> Done!...
-The Sene-Store
-1- Inventory
-2- Add item
-3- Remove item
-4- Stock item
-5- POS
-0- exit program
-> 0
->>>> Saving Items...
->>>> Done!...
-Goodbye!
-Contents of file >>posdata.csv<<:
-9852,Seedless Grapes,10.56,0,20
-9318,Tide Detergent,16.99,1,10
-5496,Veal Parmigiana,5.49,1,3
-3854,Beefsteak Pie,5.29,1,40
-5228,7up 12 pack,6.49,1,20
-7913,Banana,0.44,0,100
-3695,Honeydew Melon,5.99,0,20
-1679,Jack's Apple Juice,1.50,0,80
-6539,Joe Org Chips,3.29,1,15
-9462,Kiwifruit,0.50,0,123
-4297,Lays Chips S&V,3.69,1,1
-1234,Milk,3.99,0,1
-3461,Nestea 12 Pack,7.29,1,50
-3456,Paper Cups,5.99,1,38
-1313,Paper Tissue,1.22,1,204
-1627,Peaches,1.44,0,14
-3214,Pomegranate,2.50,0,5
-1596,Royal Gala Apples,4.42,0,10
-1212,Salted Butter,5.99,0,108
-6458,Blueberries,3.99,0,30
-4567,Butter,4.56,1,9
-3815,Chicken Alfredo,4.49,1,20
-3512,Coke 12 Pack,6.69,1,30
-2564,Curry Checken,4.79,1,30
-5656,Honey,12.99,1,10
-1111,Red Apples,3.99,0,50
-2222,Paper,14.99,1,60
-End of data in >>posdata.csv<<
-
-```
-
-
-
 
